@@ -9,9 +9,10 @@ Script made as part of NMR advanced lab for analysing T1 and T2 values received
 from NMR measurements of 20:1 Li concentration poly(ethylene oxide) at 
 different molecular weights and temperatures.
 
-Plots function of correlation time (tau) according to derivation from the BPP
-theory. Finds roots of equation, given T1 and T2 values, thereby determining 
-values for correlation time.
+A badly written script (basically only works with iPython, in an isolated wdir) to do all the necessary analysis for this lab.
+Also calculates tau using BPP theory - an extension on the base lab script.
+
+Assumes the data is stored in a *.csv with the data columns being [temperature, molecular weight, t1, t2]
 """
 
 import numpy as np
@@ -149,7 +150,6 @@ def NaPlot(gradients, intercepts, monWeight=44.05):
     calculates a value for Na for each temperature, then plots graph of Na
     against temperature. Fits a constant value to this (as expected from
     theory) and returns the constant value.
-    
     """
     plt.cla()
     temps, gradientArr, icept = [], [], []
@@ -181,7 +181,7 @@ def findTau(t2, masses, temps, Na, Mn, m=44.05, d=1.76E-10, gamma=26.75E7):
     """
     Takes T2 times, masses, temps and a specific molecular mass. Calculates
     constant of proportionality according to [Macromolecules Vol. 31 p4951].
-    Uses this constant of proportionality to calculate tau for at each temp
+    Uses this constant of proportionality to calculate tau at each temp
     for the given molecular mass. 
     Returns dict of tau values, indexed by respective temperatures.
     """
